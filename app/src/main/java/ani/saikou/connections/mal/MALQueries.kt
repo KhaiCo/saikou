@@ -40,8 +40,8 @@ class MALQueries {
         score: Int?,
         status: String,
         rewatch: Int? = null,
-        start: FuzzyDate? = null,
-        end: FuzzyDate? = null
+        start: FuzzyDate? = 0,
+        end: FuzzyDate? = 0
     ) {
         if(idMAL==null) return
         val data = mutableMapOf("status" to convertStatus(isAnime, status))
