@@ -40,8 +40,8 @@ class MALQueries {
         score: Int?,
         status: String,
         rewatch: Int? = null,
-        start: FuzzyDate? = null,
-        end: FuzzyDate? = null
+        start: FuzzyDate? = 0,
+        end: FuzzyDate? = 0
     ) {
         if(idMAL==null) return
         val data = mutableMapOf("status" to convertStatus(isAnime, status))
@@ -52,9 +52,9 @@ class MALQueries {
             data["score"] = score.div(10).toString()
         if(rewatch!=null)
             data[if(isAnime) "num_times_rewatched" else "num_times_reread"] = rewatch.toString()
-        if(start!=null)
+        if(start!=0)
             data["start_date"] = start.toISOString()
-        if(end!=null)
+        if(end!=0)
             data["finish_date"] = end.toISOString()
         tryWithSuspend {
             client.put(
